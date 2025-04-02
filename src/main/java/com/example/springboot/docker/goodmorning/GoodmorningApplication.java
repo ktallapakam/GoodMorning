@@ -13,7 +13,7 @@ public class GoodmorningApplication {
 	@GetMapping("/hello/{message}")
 	public String message(@PathVariable("message") String name) {
 		System.out.println("Good morning....message()");
-		return "<h3>Hello Mr/Mrs.<h1>"+name+"</h1>.....Good morning!</h3>" ;
+		return "<h3>Hello Mr/Mrs."+name+".....Good morning!</h3>" ;
 	}
 
 	public static void main(String[] args) {
