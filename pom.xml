@@ -11,7 +11,7 @@
 	<groupId>com.example.springboot.docker</groupId>
 	<artifactId>goodmorning</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>goodmorning</name>
+	<name>student-details</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
@@ -55,7 +55,7 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
-		<finalName>goodmorning</finalName>
+		<finalName>student-details</finalName>
 	</build>
 
 </project>
