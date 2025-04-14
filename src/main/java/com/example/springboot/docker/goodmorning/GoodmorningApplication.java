@@ -14,7 +14,8 @@ import java.util.Map;
 @RestController
 public class GoodmorningApplication
 {
-	public HashMap<String, Student> studentMap = new HashMap<String, Student>();
+	public static HashMap<String, Student> studentMap = new HashMap<String, Student>();
+
 
 	/*@GetMapping("/hello/{message}")
 	public String message(@PathVariable("message") String name) {
@@ -30,7 +31,7 @@ public class GoodmorningApplication
 		if(params.containsKey("gender")){ student.setGender(params.get("gender")); }
 		studentMap.put(params.get("name"), student);
 
-		return student.toString();
+		return getUsers();
 	}
 
 
@@ -47,6 +48,15 @@ public class GoodmorningApplication
 		return sb.toString();
 	}
 
+	public GoodmorningApplication() {
+		System.out.println("Constructing GoodmorningApplication Called");
+		Student stu = new Student();
+		stu.setName("Kishore");
+		stu.setAge(40);
+		stu.setGender("Male");
+		studentMap.put(stu.getName(), stu);
+		System.out.println("Student Added: "+studentMap.toString());
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(GoodmorningApplication.class, args);
