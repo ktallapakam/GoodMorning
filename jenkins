@@ -1,0 +1,37 @@
+pipeline {
+    agent any
+    tools {
+        maven 'maven'
+    }
+
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World......Hello1'
+            }
+        }
+        stage('git-checkout') {
+            steps {
+                git branch: 'main', credentialsId: 'githubCred', url: 'https://github.com/ktallapakam/GoodMorning.git'
+            }
+        }
+         stage('git-package') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
+         stage('docker-build') {
+            steps {
+                sh 'docker build -t tallapakam/students .'
+            }
+        }
+        stage('docker-push') {
+            steps {
+                withCredentials([string(credentialsId: 'dockerCred', variable: 'dockerHub')]) {
+                    sh "docker login -u tallapakam -p ${dockerHub}"
+                }
+                sh 'docker push tallapakam/students'
+            }
+        }
+    }
+}
