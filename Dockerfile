@@ -1,5 +1,4 @@
-FROM tomcat:9.0
-RUN rm -rf /usr/local/tomcat/webapps/*
-COPY target/student-details.war /usr/local/tomcat/webapps/student-details.war
+FROM openjdk:17-jdk-slim
 EXPOSE 8181
-CMD ["catalina.sh", "run"]
+add target/student-details.jar student-details.jar
+ENTRYPOINT ["java", "-jar", "/student-details.jar"]
