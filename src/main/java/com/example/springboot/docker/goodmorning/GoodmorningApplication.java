@@ -4,6 +4,7 @@ import com.example.springboot.docker.goodmorning.entity.Student;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,14 +17,13 @@ public class GoodmorningApplication
 {
 	public static HashMap<String, Student> studentMap = new HashMap<String, Student>();
 
-
-	/*@GetMapping("/hello/{message}")
+	@GetMapping("/hello/{message}")
 	public String message(@PathVariable("message") String name) {
 		System.out.println("Good morning....message()");
 		return "<h3>Hello Mr/Mrs."+name+".....Good morning!</h3>" ;
-	}*/
+	}
 
-	@GetMapping("/addUser/")
+	/*@GetMapping("/addUser/")
 	public String addUser(@RequestParam Map<String, String> params) {
 		Student student = new Student();
 		if(params.containsKey("name")){ student.setName(params.get("name")); }
@@ -56,7 +56,7 @@ public class GoodmorningApplication
 		stu.setGender("Male");
 		studentMap.put(stu.getName(), stu);
 		System.out.println("Student Added: "+studentMap.toString());
-	}
+	}*/
 
 	public static void main(String[] args) {
 		SpringApplication.run(GoodmorningApplication.class, args);
