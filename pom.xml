@@ -12,6 +12,7 @@
 	<artifactId>goodmorning</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>student-details</name>
+	<packaging>war</packaging>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
