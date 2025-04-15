@@ -1,14 +1,7 @@
-# Use an official OpenJDK image
-FROM openjdk:17-jdk-slim
-
-# Set working directory
-#WORKDIR /app
-
-# Copy your WAR file into the container
-COPY target/students.war students.war
-
-# Expose the port your app runs on (typically 8080)
+FROM tomcat:9.0
+RUN rm -rf /usr/local/tomcat/webapps/*
+COPY target/students.war /usr/local/tomcat/webapps/students.war
 EXPOSE 8181
+ENTRYPOINT ["catalina.sh", "run"]
+#ENTRYPOINT ["java", "-jar", "students.war"]
 
-# Run the WAR file
-ENTRYPOINT ["java", "-jar", "students.war"]
