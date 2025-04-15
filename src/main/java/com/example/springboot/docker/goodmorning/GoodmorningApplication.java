@@ -17,7 +17,7 @@ public class GoodmorningApplication
 {
 	public static HashMap<String, Student> studentMap = new HashMap<String, Student>();
 
-	@GetMapping("/hello/{message}")
+	@GetMapping("/{message}")
 	public String message(@PathVariable("message") String name) {
 		System.out.println("Good morning....message()");
 		return "<h3>Hello Mr/Mrs."+name+".....Good morning!</h3>" ;
