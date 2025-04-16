@@ -3,13 +3,13 @@ package com.example.springboot.docker.goodmorning;
 import com.example.springboot.docker.goodmorning.entity.Student;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 @SpringBootApplication
 @RestController
@@ -37,8 +37,9 @@ public class GoodmorningApplication
 
 	@GetMapping("/getAllUsers")
 	public String getUsers() {
+		TreeMap<String, Student> sortedMap = new TreeMap<>(studentMap);
 		StringBuilder sb = new StringBuilder("<table><tr><th>Name</th><th>Age</th><th>Gender</th></tr>");
-		studentMap.entrySet().forEach(entry -> {
+		sortedMap.entrySet().forEach(entry -> {
 			System.out.printf(String.valueOf(entry.getValue()));
 			sb.append("<tr><td>").append(entry.getValue().getName())
 					.append("</td><td>").append(entry.getValue().getAge())
@@ -46,6 +47,27 @@ public class GoodmorningApplication
 		});
 		sb.append("</table>");
 		return sb.toString();
+	}
+
+	//@DeleteMapping("/delete/{name}")
+	@GetMapping("/delete/{name}")
+	public ResponseEntity<String> delete(@PathVariable("name") String name) {
+		String message;
+		String matchedKey = studentMap.keySet()
+				.stream()
+				.filter(key -> key.equalsIgnoreCase(name))
+				.findFirst()
+				.orElse(null);
+
+		if (matchedKey != null) {
+			studentMap.remove(matchedKey);
+			message = "<p><h3>" + matchedKey + "</h3> has been deleted.</p>";
+		} else {
+			message = "<h3>" + name + "</h3> not available.";
+		}
+
+		message = message + getUsers();
+		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
 
 	public GoodmorningApplication() {
