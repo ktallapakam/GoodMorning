@@ -17,13 +17,13 @@ public class GoodmorningApplication
 {
 	public static HashMap<String, Student> studentMap = new HashMap<String, Student>();
 
-	@GetMapping("/{message}")
+	@GetMapping("/hello/{message}")
 	public String message(@PathVariable("message") String name) {
 		System.out.println("Good morning....message()");
 		return "<h3>Hello Mr/Mrs."+name+".....Good morning!</h3>" ;
 	}
 
-	/*@GetMapping("/addUser/")
+	@GetMapping("/addUser")
 	public String addUser(@RequestParam Map<String, String> params) {
 		Student student = new Student();
 		if(params.containsKey("name")){ student.setName(params.get("name")); }
@@ -49,14 +49,14 @@ public class GoodmorningApplication
 	}
 
 	public GoodmorningApplication() {
-		System.out.println("Constructing GoodmorningApplication Called");
+		System.out.println("Constructor of GoodMorning Application Called");
 		Student stu = new Student();
 		stu.setName("Kishore");
 		stu.setAge(40);
 		stu.setGender("Male");
 		studentMap.put(stu.getName(), stu);
 		System.out.println("Student Added: "+studentMap.toString());
-	}*/
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(GoodmorningApplication.class, args);
