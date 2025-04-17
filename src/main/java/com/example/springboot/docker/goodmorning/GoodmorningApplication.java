@@ -19,12 +19,13 @@ public class GoodmorningApplication
 
 	@GetMapping("/hello/{message}")
 	public String message(@PathVariable("message") String name) {
-		System.out.println("Good morning....message()");
+		System.out.println("Hello Mr/Mrs.....message()");
 		return "<h3>Hello Mr/Mrs."+name+".....Good morning!</h3>" ;
 	}
 
 	@GetMapping("/addUser")
 	public String addUser(@RequestParam Map<String, String> params) {
+		System.out.println("addUser()");
 		Student student = new Student();
 		if(params.containsKey("name")){ student.setName(params.get("name")); }
 		if(params.containsKey("age")){ student.setAge(Integer.parseInt(params.get("age"))); }
@@ -37,6 +38,7 @@ public class GoodmorningApplication
 
 	@GetMapping("/getAllUsers")
 	public String getUsers() {
+		System.out.println("getUsers()");
 		TreeMap<String, Student> sortedMap = new TreeMap<>(studentMap);
 		StringBuilder sb = new StringBuilder("<table><tr><th>Name</th><th>Age</th><th>Gender</th></tr>");
 		sortedMap.entrySet().forEach(entry -> {
@@ -52,6 +54,7 @@ public class GoodmorningApplication
 	//@DeleteMapping("/delete/{name}")
 	@GetMapping("/delete/{name}")
 	public ResponseEntity<String> delete(@PathVariable("name") String name) {
+		System.out.println("delete()");
 		String message;
 		String matchedKey = studentMap.keySet()
 				.stream()
