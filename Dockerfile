@@ -11,7 +11,8 @@ RUN mvn clean package -DskipTests
 FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 # Copy only the built jar from the builder stage
-COPY --from=builder /app/target/student.jar .
+#COPY --from=builder target/student.jar .
+COPY target/student.jar students.jar
 # Command to run the JAR
 ENTRYPOINT ["java", "-jar", "student.jar"]
 
