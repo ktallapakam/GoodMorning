@@ -1,4 +1,4 @@
-# ---------- Stage 1: Build ----------
+# ---------- Stage 1: Build ----------gives 81mb
 FROM maven:3.9.4-eclipse-temurin-17-alpine AS builder
 WORKDIR /app
 # Copy only the dependency-related files first (to leverage caching)
@@ -16,7 +16,7 @@ COPY target/students.jar students.jar
 # Command to run the JAR
 ENTRYPOINT ["java", "-jar", "student.jar"]
 
-
+#---------------------------- gives 240mb aprox
 #FROM openjdk:17-jdk-slim
 #EXPOSE 8181
 #add target/students.jar students.jar
