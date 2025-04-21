@@ -14,7 +14,7 @@ WORKDIR /app
 #COPY --from=builder target/student.jar .
 COPY target/students.jar students.jar
 # Command to run the JAR
-ENTRYPOINT ["java", "-jar", "student.jar"]
+ENTRYPOINT ["java", "-jar", "students.jar"]
 
 #---------------------------- gives 240mb aprox
 #FROM openjdk:17-jdk-slim
